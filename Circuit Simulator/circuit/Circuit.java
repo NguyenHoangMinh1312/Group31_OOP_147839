@@ -18,6 +18,7 @@ public abstract class Circuit{
         this.source = source;
     }
 
+    //Accessors
     public ComplexNumber getEqResistance(){
         return eqResistance;
     }
@@ -66,7 +67,6 @@ public abstract class Circuit{
         for(ElectricComponent i: elements)
             i.setName();
     }
-
 
     public void listElementInfo(){
         System.out.println("********************************LIST OF ELEMENTS*************************************************");

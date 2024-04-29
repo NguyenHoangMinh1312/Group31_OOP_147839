@@ -19,10 +19,19 @@ public class ComplexNumber {
     }
 
     public String toString(){
+        StringBuffer sb= new StringBuffer();
         if(imaginary == 0)
-            return real + "";
-        else
-            return real + " + " + imaginary + "i";
+            sb.append(real);
+        
+        else{
+            sb.append(real);
+            if(imaginary > 0)
+                sb.append(" + ");
+            sb.append(imaginary);
+            sb.append("i");
+        }
+
+        return sb.toString();
     }
 
     public ComplexNumber add(ComplexNumber c){

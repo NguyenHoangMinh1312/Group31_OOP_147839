@@ -81,6 +81,7 @@ public abstract class ElectricComponent {
 
         return sb.toString();
     }
+    
     public abstract void setName();
     public abstract void setResistance(Source source);
 
