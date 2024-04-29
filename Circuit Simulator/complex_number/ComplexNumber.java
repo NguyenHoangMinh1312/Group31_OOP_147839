@@ -19,7 +19,10 @@ public class ComplexNumber {
     }
 
     public String toString(){
-        return real + " + " + imaginary + "i";
+        if(imaginary == 0)
+            return real + "";
+        else
+            return real + " + " + imaginary + "i";
     }
 
     public ComplexNumber add(ComplexNumber c){

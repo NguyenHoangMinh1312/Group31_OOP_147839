@@ -15,6 +15,7 @@ public class CircuitSimulator {
         circuit.addElement(r2);
         circuit.addElement(l1);
         circuit.addElement(c1);
+        
         circuit.listElementInfo();
 
         // System.out.println(r1.getResistance().toString());
