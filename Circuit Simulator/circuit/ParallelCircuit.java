@@ -33,10 +33,6 @@ public class ParallelCircuit extends Circuit{
         if(this.isShortCircuit)
             for(ElectricComponent i: this.elements)
                 i.setVoltage(new ComplexNumber(0, 0)); //Short Circuit
-
-        else if(this.eqResistance.isInfinity())
-            for(ElectricComponent i: this.elements)
-                i.setVoltage(new ComplexNumber(0, 0)); //Open Circuit
         
         else{
             for(ElectricComponent i: this.elements)

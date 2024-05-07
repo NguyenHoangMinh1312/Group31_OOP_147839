@@ -7,17 +7,17 @@ import javax.swing.table.*;
 
 
 public abstract class Panel extends JPanel{
-    JComboBox<String> sourceDropDown;
-    JButton addResistorButton;
-    JButton addCapacitorButton;
-    JButton addInductorButton;
-    JButton removeElementButton;
-    JButton submitButton;
-    JTable infoTable;
-    DefaultTableModel infoTableModel;
-    JTable analysisTable = null;
-    DefaultTableModel analysisTableModel;
-    Circuit circuit;
+    protected JComboBox<String> sourceDropDown;
+    protected JButton addResistorButton;
+    protected JButton addCapacitorButton;
+    protected JButton addInductorButton;
+    protected JButton removeElementButton;
+    protected JButton submitButton;
+    protected JTable infoTable;
+    protected DefaultTableModel infoTableModel;
+    protected JTable analysisTable = null;
+    protected DefaultTableModel analysisTableModel;
+    protected Circuit circuit;
     //Constructor
     public Panel(){
         String[] sourceOption= {"DC source", "AC source"};

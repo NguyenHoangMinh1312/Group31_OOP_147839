@@ -1,15 +1,10 @@
 package circuit;
 import element.*;
-
-import javax.swing.JPanel;
 import javax.swing.JFrame;
-
 import complex_number.*;
 
 public class SerialCircuit extends Circuit{
     //Constructor
-    public JPanel circuitDiagram;
-    public boolean shouldPaint = false; 
     public SerialCircuit(){
         super();
     }
