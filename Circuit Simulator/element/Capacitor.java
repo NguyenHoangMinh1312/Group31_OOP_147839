@@ -2,7 +2,6 @@ package element;
 import circuit.*;
 import voltage_source.*;
 import complex_number.*;
-import simulator.*;
 
 public class Capacitor extends ElectricComponent{
     //Constructor
@@ -19,26 +18,5 @@ public class Capacitor extends ElectricComponent{
             this.resistance=  new ComplexNumber(0, -1/(2 *Math.PI *source.getFrequency()*parameter));
         else
             this.resistance= new ComplexNumber(Double.POSITIVE_INFINITY, 0);    //if DC source
-    }
-
-    public void setLabel(Panel panel, int x, int y){
-        if(panel instanceof SerialPanel){
-            this.label.drawLine(x, y, x, y + 50);
-            this.label.drawLine(x + 10, y, x + 10, y + 50);
-        }
-        else{
-            this.label.drawLine(x, y, x + 50, y);
-            this.label.drawLine(x, y + 10, x + 50, y + 10);
-        }
-    }
-
-    public void drawHorizontal(int x, int y){
-        this.label.drawLine(x, y, x + 50, y);
-        this.label.drawLine(x, y+ 10, x + 50, y + 10);
-    }
-
-    public void drawVertical(int x, int y){
-        this.label.drawLine(x, y, x, y + 50);
-        this.label.drawLine(x+ 10, y, x + 10, y + 50);
     }
 }

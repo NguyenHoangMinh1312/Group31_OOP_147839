@@ -91,7 +91,4 @@ public abstract class ElectricComponent{
     
     public abstract void setName(Circuit circuit);
     public abstract void setResistance(Source source);
-    // public abstract void setLabel(Panel panel, int x, int y);
-    // public abstract void drawHorizontally(int x, int y);
-    // public abstract void drawVertically(int x, int y);
-}   
+}

@@ -83,13 +83,6 @@ public abstract class Circuit{
                     nbCapacitor--;
                 else if(i instanceof Inductor)
                     nbInductor--;
-                
-                //set the name again for the left elements
-                for(ElectricComponent j: elements)
-                    j.setName(this);
-                
-                //recalculate the eqResistance
-                setEqResistance();
                 return true;
             }
         }

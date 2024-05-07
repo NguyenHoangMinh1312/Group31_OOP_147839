@@ -230,7 +230,6 @@ public abstract class Panel extends JPanel{
     public void removeElementFunction(){
         //ask the user to enter the name of the element
         String name= JOptionPane.showInputDialog("Enter the name of the element:");
-    
         //if the user clicked cancel
         if(name == null)
             return;
@@ -238,11 +237,21 @@ public abstract class Panel extends JPanel{
         if(!this.circuit.removeElement(name))
             JOptionPane.showMessageDialog(null, "Element not found!");
         else {
-            // Find the row with the matching name and remove it
+            // Find the info row with the matching name and remove it
             for (int i = 0; i < this.infoTableModel.getRowCount(); i++) {
                 if (this.infoTableModel.getValueAt(i, 3).equals(name)) {
                     this.infoTableModel.removeRow(i);
                     break;
+                }
+            }
+
+            //Find the analysis row with the matching name and remove it
+            if (analysisTableModel != null) {
+                for (int i = 0; i < this.analysisTableModel.getRowCount(); i++) {
+                    if (this.analysisTableModel.getValueAt(i, 0).equals(name)) {
+                        this.analysisTableModel.removeRow(i);
+                        break;
+                    }
                 }
             }
             JOptionPane.showMessageDialog(null, name + " removed successfully!");
@@ -250,7 +259,6 @@ public abstract class Panel extends JPanel{
     }
     
     public void submitFunction(){
-        // If there's already an analysisTable, remove it
         if (analysisTable != null)
             this.remove(analysisTable);
         //Analyse the circuit
