@@ -1,9 +1,7 @@
 package circuit;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
-
 import element.*;
 
 public class SerialCircuitDiagram extends JPanel{
@@ -51,11 +49,13 @@ public class SerialCircuitDiagram extends JPanel{
         g2d.drawLine(100, 100, 100, 200);
         g2d.drawLine(x, 100, x, 200);
         g2d.drawOval((x + 100)/2 -20, 180, 40, 40);
+        
         //draw the source
         if(this.circuit.source.getFrequency() == 0)
             g2d.drawString("+-", (x + 100)/2-4, 205);
         else
             g2d.drawString("~", (x + 100)/2 - 2 , 205);
+        
         g2d.drawLine(100, 200, (x + 100)/2 -20, 200);
         g2d.drawLine(x, 200, (x + 100)/2 + 20, 200);
     }

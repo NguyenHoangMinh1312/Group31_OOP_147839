@@ -2,7 +2,6 @@ package element;
 import circuit.*;
 import voltage_source.*;
 import complex_number.*;
-import java.awt.Graphics2D;
 
 
 public abstract class ElectricComponent{
@@ -13,8 +12,6 @@ public abstract class ElectricComponent{
     protected ComplexNumber resistance;
     protected ComplexNumber voltage;
     protected ComplexNumber current;
-    protected Graphics2D label;
-    
     //Constuctor
     public ElectricComponent(String type, String unit, double parameter){
         this.type= type;
@@ -57,10 +54,6 @@ public abstract class ElectricComponent{
 
     public void setCurrent(ComplexNumber current){
         this.current= current;
-    }
-
-    public Graphics2D getLabel(){
-        return label;
     }
 
     public String elementInfo(){
