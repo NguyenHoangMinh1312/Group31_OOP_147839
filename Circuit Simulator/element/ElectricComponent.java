@@ -1,9 +1,11 @@
 package element;
+import circuit.*;
 import voltage_source.*;
 import complex_number.*;
+import java.awt.Graphics2D;
 
 
-public abstract class ElectricComponent {
+public abstract class ElectricComponent{
     protected String type;
     protected String unit;
     protected String name;
@@ -11,9 +13,10 @@ public abstract class ElectricComponent {
     protected ComplexNumber resistance;
     protected ComplexNumber voltage;
     protected ComplexNumber current;
-   
+    protected Graphics2D label;
+    
     //Constuctor
-    public ElectricComponent(String type, String unit, double parameter) {
+    public ElectricComponent(String type, String unit, double parameter){
         this.type= type;
         this.unit= unit;
         this.parameter = parameter;
@@ -32,7 +35,7 @@ public abstract class ElectricComponent {
         return name;
     }
 
-    public double getParameter() {
+    public double getParameter(){
         return parameter;
     }
     
@@ -56,6 +59,10 @@ public abstract class ElectricComponent {
         this.current= current;
     }
 
+    public Graphics2D getLabel(){
+        return label;
+    }
+
     public String elementInfo(){
         StringBuffer sb= new StringBuffer();
         sb.append(this.type);
@@ -74,15 +81,17 @@ public abstract class ElectricComponent {
         sb.append(this.name);
         sb.append("\t");
         sb.append(this.voltage.toString());
-        sb.append("\t");
+        sb.append("\t\t");
         sb.append(this.current.toString());
-        sb.append("\t");
+        sb.append("\t\t");
         sb.append(this.resistance.toString());
 
         return sb.toString();
     }
     
-    public abstract void setName();
+    public abstract void setName(Circuit circuit);
     public abstract void setResistance(Source source);
-
+    // public abstract void setLabel(Panel panel, int x, int y);
+    // public abstract void drawHorizontally(int x, int y);
+    // public abstract void drawVertically(int x, int y);
 }   

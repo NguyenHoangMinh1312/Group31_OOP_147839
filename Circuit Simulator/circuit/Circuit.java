@@ -4,94 +4,101 @@ import voltage_source.*;
 import complex_number.*;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
+
 public abstract class Circuit{
     protected ArrayList<ElectricComponent> elements= new ArrayList<>();
-    protected Source source;
-    public static int nbResistor=0;
-    public static int nbCapacitor=0;
-    public static int nbInductor=0;
+    protected Source source= new Source(0, 0);     //default source
+    protected int nbResistor=0;
+    protected int nbCapacitor=0;
+    protected int nbInductor=0;
     protected boolean isShortCircuit;
     protected ComplexNumber eqResistance;
+    protected JPanel circuitDiagram;
 
-    //Constructor
-    public Circuit(Source source){
-        this.source = source;
+    
+    //Accessors and Mutators
+    public ArrayList<ElectricComponent> getElements(){
+        return this.elements;
     }
 
-    //Accessors
+    public Source getSource(){
+        return this.source;
+    }
+
+    public void setSource(Source source){
+        this.source= source;
+    }
+
+    public int getNbResistor(){
+        return this.nbResistor;
+    }
+
+    public int getNbCapacitor(){
+        return this.nbCapacitor;
+    }
+
+    public int getNbInductor(){
+        return this.nbInductor;
+    }
+
+    public boolean getIsShortCircuit(){
+        return this.isShortCircuit;
+    }
+
     public ComplexNumber getEqResistance(){
-        return eqResistance;
+        return this.eqResistance;
     }
 
-    public void addElement(ElectricComponent element){
-        if(nbCapacitor + nbInductor + nbResistor >= 5){
-            System.out.println("Maximum number of elements reached!");
-            return;
-        }
+    public JPanel getCircuitDiagram(){
+        return this.circuitDiagram;
+    }
+
+    //return true if the element is added, false otherwise
+    public boolean addElement(ElectricComponent element){
+        if(nbCapacitor + nbInductor + nbResistor >= 5)
+            return false;
         
         elements.add(element);
         if(element instanceof Resistor)
-            nbResistor++;
+            this.nbResistor++;
         else if(element instanceof Capacitor)
-            nbCapacitor++;
+            this.nbCapacitor++;
         else if(element instanceof Inductor)
-            nbInductor++;
-
-        //set the name and calculate the resistance
-        element.setName();
-        element.setResistance(source);
+            this.nbInductor++;
+        //set the name for the new element
+        element.setName(this);
+        return true;
     }
 
-    public void removeElement(ElectricComponent element){
-        if(elements.isEmpty()){
-            System.out.println("No elements to remove!");
-            return;
+    //return true if the element is removed, false otherwise
+    public boolean removeElement(String name){
+        for(ElectricComponent i : elements){
+            if(i.getName().equals(name)){
+                elements.remove(i);
+                if(i instanceof Resistor)
+                    nbResistor--;
+                else if(i instanceof Capacitor)
+                    nbCapacitor--;
+                else if(i instanceof Inductor)
+                    nbInductor--;
+                
+                //set the name again for the left elements
+                for(ElectricComponent j: elements)
+                    j.setName(this);
+                
+                //recalculate the eqResistance
+                setEqResistance();
+                return true;
+            }
         }
-
-        if(!elements.contains(element)){
-            System.out.println("Element not found!");
-            return;
-        }
-        
-        elements.remove(element);
-        for(int i=0; i<elements.size(); i++)
-            elements.get(i).setName();
-        if(element instanceof Resistor)
-            nbResistor--;
-        else if(element instanceof Capacitor)
-            nbCapacitor--;
-        else if(element instanceof Inductor)
-            nbInductor--;
-
-        //set the name again for the left elements
-        for(ElectricComponent i: elements)
-            i.setName();
-    }
-
-    public void listElementInfo(){
-        System.out.println("********************************LIST OF ELEMENTS*************************************************");
-        System.out.println("Type\t\tParameter\t\tUnit\t\tName");
-        for(ElectricComponent i: elements)
-            System.out.println(i.elementInfo());
-        
-        System.out.println("*************************************************************************************************");
-    }
-
-    public void listElementAnalysis(){
-        if(this.isShortCircuit){
-            System.out.println("Short circuit detected! No analysis possible!");
-            return;
-        }
-
-        System.out.println("********************************ELEMENTS ANALYSIS************************************************");
-        System.out.println("\tVoltage\t\tCurrent\t\tResistance");
-        for(ElectricComponent i: elements)
-            System.out.println(i.elementAnalysis());
-        
-        System.out.println("*************************************************************************************************");
+        return false;
     }
 
     public abstract void setEqResistance();
     public abstract void setElementVoltage();
     public abstract void setElementCurrent();
+    public abstract void circuitAnalysis();
+    public abstract void paint();
 }

@@ -1,5 +1,7 @@
 package complex_number;
 
+import java.text.DecimalFormat;
+
 public class ComplexNumber {
     private double real;
     private double imaginary;
@@ -16,22 +18,6 @@ public class ComplexNumber {
 
     public double getImaginary(){
         return imaginary;
-    }
-
-    public String toString(){
-        StringBuffer sb= new StringBuffer();
-        if(imaginary == 0)
-            sb.append(real);
-        
-        else{
-            sb.append(real);
-            if(imaginary > 0)
-                sb.append(" + ");
-            sb.append(imaginary);
-            sb.append("i");
-        }
-
-        return sb.toString();
     }
 
     public ComplexNumber add(ComplexNumber c){
@@ -59,6 +45,19 @@ public class ComplexNumber {
         return this.real == Double.POSITIVE_INFINITY;
     }
 
+    public String toString(){
+        DecimalFormat df = new DecimalFormat("0.######");
+        StringBuffer sb= new StringBuffer();
+        if(imaginary == 0)
+            sb.append(df.format(real));
+        else{
+            sb.append(df.format(real));
+            if(imaginary > 0)
+                sb.append("+");
+            sb.append(df.format(imaginary));
+            sb.append("i");
+        }
     
-    
+        return sb.toString();
+    }
 }
