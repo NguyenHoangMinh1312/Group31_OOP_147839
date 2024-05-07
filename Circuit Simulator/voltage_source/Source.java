@@ -1,6 +1,6 @@
 package voltage_source;
 
-public class Source {
+public class Source{
     private double voltage;
     private double frequency;    
     //Constructor

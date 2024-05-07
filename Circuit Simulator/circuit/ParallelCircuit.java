@@ -28,8 +28,6 @@ public class ParallelCircuit extends Circuit{
     }
 
     public void setElementVoltage(){
-        setEqResistance();
-
         if(this.isShortCircuit)
             for(ElectricComponent i: this.elements)
                 i.setVoltage(new ComplexNumber(0, 0)); //Short Circuit
@@ -41,8 +39,6 @@ public class ParallelCircuit extends Circuit{
     }
 
     public void setElementCurrent(){
-        setElementVoltage();
-        
         if(this.isShortCircuit)
             for(ElectricComponent i: this.elements)
                 i.setCurrent(new ComplexNumber(Double.POSITIVE_INFINITY, 0)); //Short Circuit

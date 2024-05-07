@@ -55,32 +55,6 @@ public abstract class ElectricComponent{
     public void setCurrent(ComplexNumber current){
         this.current= current;
     }
-
-    public String elementInfo(){
-        StringBuffer sb= new StringBuffer();
-        sb.append(this.type);
-        sb.append("\t");
-        sb.append(this.parameter);
-        sb.append("\t\t\t");
-        sb.append(this.unit);
-        sb.append("\t\t");
-        sb.append(this.name);
-
-        return sb.toString();
-    }
-
-    public String elementAnalysis(){
-        StringBuffer sb= new StringBuffer();
-        sb.append(this.name);
-        sb.append("\t");
-        sb.append(this.voltage.toString());
-        sb.append("\t\t");
-        sb.append(this.current.toString());
-        sb.append("\t\t");
-        sb.append(this.resistance.toString());
-
-        return sb.toString();
-    }
     
     public abstract void setName(Circuit circuit);
     public abstract void setResistance(Source source);

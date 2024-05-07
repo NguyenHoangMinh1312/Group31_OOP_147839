@@ -17,7 +17,6 @@ public abstract class Circuit{
     protected ComplexNumber eqResistance;
     protected JPanel circuitDiagram;
 
-    
     //Accessors and Mutators
     public ArrayList<ElectricComponent> getElements(){
         return this.elements;
@@ -67,6 +66,7 @@ public abstract class Circuit{
             this.nbCapacitor++;
         else if(element instanceof Inductor)
             this.nbInductor++;
+        
         //set the name for the new element
         element.setName(this);
         return true;

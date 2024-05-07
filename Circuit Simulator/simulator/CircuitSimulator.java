@@ -1,7 +1,6 @@
 package simulator;
 import javax.swing.*;
 
-
 public class CircuitSimulator{
 
     public static JFrame frame;

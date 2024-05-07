@@ -5,7 +5,7 @@ import complex_number.*;
 
 public class Inductor extends ElectricComponent {
     //Constructor
-    public Inductor(double inductance) {
+    public Inductor(double inductance){
         super("Inductor", "Henry", inductance);
     }
 

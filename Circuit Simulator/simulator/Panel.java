@@ -1,7 +1,7 @@
 package simulator;
 import circuit.*;
 import element.*;
-import voltage_source.Source;
+import voltage_source.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -65,6 +65,7 @@ public abstract class Panel extends JPanel{
             while(true){
                 try{
                     String voltageStr= JOptionPane.showInputDialog("Enter the voltage(V):");
+                    //if the user pressed cancel
                     if(voltageStr == null)
                         return;
                     double voltage= Double.parseDouble(voltageStr);
@@ -79,7 +80,7 @@ public abstract class Panel extends JPanel{
                     
                 }
                 catch(NumberFormatException e){
-                    JOptionPane.showMessageDialog(null, "Please enter a valid number");
+                    JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
                 }
             }
         }
@@ -90,6 +91,7 @@ public abstract class Panel extends JPanel{
             while(true){
                 try{
                     String voltageStr= JOptionPane.showInputDialog("Enter the voltage(V):");
+                    //if the user pressed cancel
                     if(voltageStr == null)
                         return;
                     voltage= Double.parseDouble(voltageStr);
@@ -97,7 +99,6 @@ public abstract class Panel extends JPanel{
                         JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
                     else
                         break;
-                    
                 }
                 catch(NumberFormatException e){
                     JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
@@ -108,6 +109,7 @@ public abstract class Panel extends JPanel{
             while(true){
                 try{
                     String frequencyStr= JOptionPane.showInputDialog("Enter the frequency(Hz):");
+                    //if the user pressed cancel
                     if(frequencyStr == null)
                         return;
                     double frequency= Double.parseDouble(frequencyStr); 
@@ -119,7 +121,6 @@ public abstract class Panel extends JPanel{
                         this.circuit.setSource(new Source(voltage, frequency));
                         break;
                     }
-                    
                 }
                 catch(NumberFormatException e){
                     JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
@@ -147,11 +148,10 @@ public abstract class Panel extends JPanel{
                     if(!this.circuit.addElement(resistor))
                         JOptionPane.showMessageDialog(null, "Maximum number of elements reached!");
                     else{
-                        //add to the last row
+                        //add to the last row of info table
                         this.infoTableModel.addRow(new Object[]{"Resistor", resistance, "Ohm", resistor.getName()});
                         this.revalidate();
                     }
-                        
                     break;
                     
                 }
@@ -180,11 +180,10 @@ public abstract class Panel extends JPanel{
                     if(!this.circuit.addElement(capacitor))
                         JOptionPane.showMessageDialog(null, "Maximum number of elements reached!");
                     else{
-                        //add to the last row
+                        //add to the last row of info table
                         this.infoTableModel.addRow(new Object[]{"Capacitor", capacitance, "Farad", capacitor.getName()});
                         this.revalidate();
                     }
-                        
                     break;
                 }
             }
@@ -214,7 +213,7 @@ public abstract class Panel extends JPanel{
                     if(!this.circuit.addElement(inductor))
                         JOptionPane.showMessageDialog(null, "Maximum number of elements reached!");
                     else{
-                        //add to the last row
+                        //add to the last row of info table
                         this.infoTableModel.addRow(new Object[]{"Inductor", inductance, "Henry", inductor.getName()});
                         // this.revalidate();
                     }
@@ -238,28 +237,25 @@ public abstract class Panel extends JPanel{
             JOptionPane.showMessageDialog(null, "Element not found!");
         else {
             // Find the info row with the matching name and remove it
-            for (int i = 0; i < this.infoTableModel.getRowCount(); i++) {
-                if (this.infoTableModel.getValueAt(i, 3).equals(name)) {
+            for (int i = 0; i < this.infoTableModel.getRowCount(); i++) 
+                if(this.infoTableModel.getValueAt(i, 3).equals(name)){
                     this.infoTableModel.removeRow(i);
                     break;
                 }
-            }
-
             //Find the analysis row with the matching name and remove it
-            if (analysisTableModel != null) {
-                for (int i = 0; i < this.analysisTableModel.getRowCount(); i++) {
-                    if (this.analysisTableModel.getValueAt(i, 0).equals(name)) {
+            if (analysisTableModel != null)
+                for (int i = 0; i < this.analysisTableModel.getRowCount(); i++) 
+                    if(this.analysisTableModel.getValueAt(i, 0).equals(name)){
                         this.analysisTableModel.removeRow(i);
                         break;
                     }
-                }
-            }
+                
             JOptionPane.showMessageDialog(null, name + " removed successfully!");
         }
     }
     
     public void submitFunction(){
-        if (analysisTable != null)
+        if(analysisTable != null)
             this.remove(analysisTable);
         //Analyse the circuit
         this.circuit.circuitAnalysis();
@@ -274,7 +270,7 @@ public abstract class Panel extends JPanel{
         analysisTableModel.addColumn("Voltage(V)");
         analysisTableModel.addColumn("Current(A)");
         analysisTableModel.addColumn("Resistance(Ohm)");
-        analysisTableModel.addRow(new Object[]{"Name", "Voltage(V)", "Current(A)", "Resistance(Ohm)"});
+        analysisTableModel.addRow(new Object[]{"Name", "Voltage (V)", "Current (A)", "Resistance (Ohm)"});
         
         for(ElectricComponent i: this.circuit.getElements())
             analysisTableModel.addRow(new Object[]{i.getName(), i.getVoltage().toString(), i.getCurrent().toString(), i.getResistance().toString()});

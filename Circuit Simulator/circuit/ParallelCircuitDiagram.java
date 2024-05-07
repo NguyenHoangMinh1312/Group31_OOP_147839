@@ -1,5 +1,4 @@
 package circuit;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -14,6 +13,7 @@ public class ParallelCircuitDiagram extends JPanel{
         this.circuit= circuit;
     }
 
+    //override
     protected void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         int x= 100, y=100;
