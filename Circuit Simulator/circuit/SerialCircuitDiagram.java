@@ -18,18 +18,21 @@ public class SerialCircuitDiagram extends JPanel{
         int x= 100, y=100;
         //draw the components
         for(ElectricComponent i : this.circuit.getElements()){
-            g2d.drawLine(x, y, x + 30, y);
-            x+=30;
+            g2d.drawLine(x, y, x + 50, y);
+            x+=50;
             if(i instanceof Resistor){
                 g2d.drawRect(x, y-5, 50, 10);
-                g2d.drawString(i.getName(), x + 20 , y - 20);
+                g2d.drawString(i.getName(), x + 20 , y - 35);
+                g2d.drawString(i.getParameter() + " Ohm", x +2, y - 20);
                 x+=50;
             }
 
             else if(i instanceof Capacitor){
                 g2d.drawLine(x, y-15, x, y + 15);
                 g2d.drawLine(x + 10, y-15, x + 10, y + 15);
-                g2d.drawString(i.getName(), x, y - 20);
+                g2d.drawString(i.getName(), x, y - 35);
+                g2d.drawString(i.getParameter() + " F", x-8, y - 20);
+
                 x+=10;
             }
 
@@ -40,7 +43,8 @@ public class SerialCircuitDiagram extends JPanel{
                     else
                         g2d.drawArc(x + j * 10, y-5, 10, 10, 180, 180);
                 }
-                g2d.drawString(i.getName(), x + 20, y - 20);
+                g2d.drawString(i.getName(), x + 20, y - 35);
+                g2d.drawString(i.getParameter() + " H", x +6, y - 20);
                 x+=60;
             }
         }
@@ -55,6 +59,7 @@ public class SerialCircuitDiagram extends JPanel{
             g2d.drawString("+-", (x + 100)/2-4, 205);
         else
             g2d.drawString("~", (x + 100)/2 - 2 , 205);
+        g2d.drawString("" + this.circuit.source.getVoltage() + " V", (x + 100)/2 - 10, 170);
         
         g2d.drawLine(100, 200, (x + 100)/2 -20, 200);
         g2d.drawLine(x, 200, (x + 100)/2 + 20, 200);
