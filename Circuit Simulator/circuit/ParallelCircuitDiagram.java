@@ -1,4 +1,5 @@
 package circuit;
+import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -16,6 +17,8 @@ public class ParallelCircuitDiagram extends JPanel{
     //override
     protected void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setStroke(new BasicStroke(2));
+        
         int x= 100, y=100;
         //draw the source
         g2d.drawLine(x, y, x, y + 30);
