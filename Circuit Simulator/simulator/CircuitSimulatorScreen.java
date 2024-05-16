@@ -1,7 +1,7 @@
 package simulator;
 import javax.swing.*;
 
-public class CircuitSimulator{
+public class CircuitSimulatorScreen{
 
     public static JFrame frame;
     public static JTabbedPane pane;
@@ -9,7 +9,7 @@ public class CircuitSimulator{
     public static void main(String[] args){
         //main frame
         frame= new JFrame("Circuit Simulator");
-        frame.setSize(800, 800);
+        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); 
