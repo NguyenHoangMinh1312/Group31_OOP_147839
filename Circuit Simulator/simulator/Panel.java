@@ -12,12 +12,14 @@ public abstract class Panel extends JPanel{
     protected JButton addCapacitorButton;
     protected JButton addInductorButton;
     protected JButton removeElementButton;
+    protected JButton resetButton;
     protected JButton submitButton;
     protected JTable infoTable;
     protected DefaultTableModel infoTableModel;
     protected JTable analysisTable = null;
     protected DefaultTableModel analysisTableModel;
     protected Circuit circuit;
+    
     //Constructor
     public Panel(){
         String[] sourceOption= {"DC source", "AC source"};
@@ -36,6 +38,9 @@ public abstract class Panel extends JPanel{
         this.removeElementButton = new JButton("Remove element");
         this.removeElementButton.addActionListener(e -> removeElementFunction());
 
+        this.resetButton = new JButton("Reset");
+        this.resetButton.addActionListener(e -> resetFunction());
+
         this.submitButton = new JButton("Submit");
         this.submitButton.addActionListener(e -> submitFunction());
         
@@ -53,6 +58,7 @@ public abstract class Panel extends JPanel{
         this.add(this.addCapacitorButton);
         this.add(this.addInductorButton);
         this.add(this.removeElementButton);
+        this.add(this.resetButton);
         this.add(this.submitButton);
         this.add(this.infoTable);
     }
@@ -292,7 +298,7 @@ public abstract class Panel extends JPanel{
         
     }
 
-    
+    public abstract void resetFunction();
 }
 
     
