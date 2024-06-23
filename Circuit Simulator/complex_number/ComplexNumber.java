@@ -1,7 +1,7 @@
 package complex_number;
 import java.text.DecimalFormat;
 
-public class ComplexNumber {
+public class ComplexNumber{
     private double real;
     private double imaginary;
 

@@ -3,7 +3,6 @@ import element.*;
 import voltage_source.*;
 import complex_number.*;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 

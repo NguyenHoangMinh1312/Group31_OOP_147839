@@ -5,7 +5,6 @@ import voltage_source.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-
 public abstract class Panel extends JPanel{
     protected JComboBox<String> sourceDropDown;
     protected JButton addResistorButton;
@@ -83,7 +82,6 @@ public abstract class Panel extends JPanel{
                         this.circuit.setSource(new Source(voltage, 0));
                         break;
                     }
-                    
                 }
                 catch(NumberFormatException e){
                     JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
@@ -132,7 +130,6 @@ public abstract class Panel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
                 }
             }
-
         }
     }
 
@@ -197,7 +194,6 @@ public abstract class Panel extends JPanel{
                 JOptionPane.showMessageDialog(null, "Please enter a non-negative number");
             }
         }
-
     }
     
     public void addInductorFunction(){
@@ -295,7 +291,6 @@ public abstract class Panel extends JPanel{
         
         //draw the circuit diagram
         this.circuit.paint();
-        
     }
 
     public abstract void resetFunction();

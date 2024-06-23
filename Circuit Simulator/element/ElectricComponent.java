@@ -3,12 +3,11 @@ import circuit.*;
 import voltage_source.*;
 import complex_number.*;
 
-
 public abstract class ElectricComponent{
     protected String type;
     protected String unit;
     protected String name;
-    protected double parameter;     //can be resistance, capacitance, or inductance
+    protected double parameter;         //can be resistance, capacitance, or inductance
     protected ComplexNumber resistance;
     protected ComplexNumber voltage;
     protected ComplexNumber current;
